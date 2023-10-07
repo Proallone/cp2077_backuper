@@ -5,14 +5,14 @@ from datetime import date, datetime
 ROOT = os.path.abspath( os.path.dirname( __file__ ) )
 os.chdir(ROOT)
 
-CP_SAVES_FOLDER = os.path.join(ROOT, 'Cyberpunk 2077')
-CP_BACKUPS_FOLDERS = sorted(next(os.walk("."))[1], key=os.path.getmtime, reverse=True)
+CP_SAVES_FOLDER = './Cyberpunk 2077'
+CP_BACKUPS_FOLDERS = sorted(next(os.walk("./"))[1], key=os.path.getmtime, reverse=True)
 
 LAST_SAVE_MTIME = os.stat(CP_SAVES_FOLDER).st_mtime
 LAST_BACKUP_CTIME = os.stat(CP_BACKUPS_FOLDERS[0]).st_ctime
 
 TODAY = date.today().strftime('%d-%m-%Y')
-BACKUP_DESTINATION = os.path.join(ROOT, f'AutoBackup-{TODAY}')
+BACKUP_DESTINATION = f'AutoBackup-{TODAY}'
 
 def make_backup():
     try:
