@@ -1,6 +1,7 @@
 import os
+import sys
 import shutil 
-from datetime import date, datetime 
+from datetime import date, datetime, timedelta
 
 ROOT = os.path.abspath( os.path.dirname( __file__ ) )
 os.chdir(ROOT)
@@ -30,4 +31,13 @@ def is_backup_needed ():
     else:
         return False
 
+def remove_old_backups(older_than_in_days=7):
+    try:
+        shutil.rmtree(f'./AutoBackup-{TODAY}')
+    except OSError as error:
+        print(error)
+    
+
 make_backup()
+# print ('Number of arguments:', str(sys.argv), 'arguments')
+# print(date.today() - timedelta(days=7))
